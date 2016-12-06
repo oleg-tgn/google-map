@@ -10,6 +10,7 @@
         margin: 0;
         padding: 0;
       }
+      /*Задаем размер карты*/
       #map {
         width: 800px;        
         height: 600px;
@@ -17,8 +18,11 @@
     </style>
   </head>
   <body>
+    <!-- В этот блок будет вставлена карта -->
     <div id="map"></div>
+    <!-- В этом скрипте вызывается создание карты и расстановка точек -->
     <script src="map.js"></script>
+    <!-- Подключение Google Maps API -->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU1F44asvv5d2kAMwI3mCRRDycGKTCtGg&signed_in=true&callback=initMap"></script>
   </body>

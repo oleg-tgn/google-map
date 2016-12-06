@@ -2,17 +2,25 @@
 // When the user clicks the marker, an info window opens.
 
 function initMap() {
-    
+  
+  //отвечает за выбор центтра карты
   var centerPoint = {
     position: { lat: 47.2722793, lng: 39.3422999 },
     zoom: 10    
   };
 
-  var tooltip = {
+  //размер InfoWindow всплывающего окна
+  var infoWindowSize = {
     width: 500,
     height: 400
   }
 
+ /*
+  * Каждая точка содержит следующие данные
+  * position - координаты точки (долгота и широта), ее можно взять из URL ссылок на панорамы, начинается после символа "@"
+  * title - подпись к метке, взята из документа
+  * panorana - это ссылка на iframe c панорамой
+  */
   var markers = [
     {
       position: { lat: 47.2247093, lng: 39.7283837 },
@@ -191,16 +199,19 @@ function initMap() {
     }
   ];
 
-
+  //создаем карту с помощью метода Google API, передаем ей параметры центра и приближения
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: centerPoint.zoom,
     center: centerPoint.position
   });
+
+  //изображение, которое будет применено для маркера 
   var markerIcon = "img/bigcity.png";
 
+  //Циклически проходим по массиву точек и создаем метки и окна с панорамами с помощью методов Google API
   markers.forEach(function(mark) {
     var panoranaContent = '<iframe src="https://www.google.com/maps/embed?pb=' + mark.panorana +
-      '" width=' + tooltip.width + ' height='+ tooltip.height +' frameborder="0" style="border:0" allowfullscreen></iframe>';
+      '" width=' + infoWindowSize.width + ' height='+ infoWindowSize.height +' frameborder="0" style="border:0" allowfullscreen></iframe>';
 
     var infowindow = new google.maps.InfoWindow({
       content: panoranaContent
